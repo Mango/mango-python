@@ -13,7 +13,7 @@ You can get the library from our GitHub account and copy the ``pymango`` folder 
 
 If you want to use ``pip``, you can point it directly into the repository::
 
-    $ pip install -e https://github.com/Mango/mango-python.git#egg=pymango
+    $ pip install -e git+https://github.com/Mango/mango-python.git#egg=pymango
 
 We are working out to include ``pymango`` into `PyPI <https://pypi.python.org/pypi>`_.
 
