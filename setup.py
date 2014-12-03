@@ -6,8 +6,9 @@ setup(
     author="Mango Development Team",
     author_email="support@getmango.com",
     packages=["pymango"],
-    url="http://github.com/mango/pymango/",
-    license="LICENSE",
+    url='https://getmango.com/',
+    download_url="https://github.com/Mango/mango-python",
+    license="MIT",
     description="Python library for Mango Payment API",
     long_description="Basic python library to interact with Mango Payment API",
     install_requires=[

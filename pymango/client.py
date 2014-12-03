@@ -61,8 +61,6 @@ def req(api_key, method, endpoint, data=None, params=None):
                 text=response.text
             ))
         raise InputValidationError(error_code, error_message)
-    elif response.status_code == 404:
-        raise NotFound
     elif response.status_code == 401:
         raise AuthenticationError
     elif response.status_code == 404:
