@@ -2,6 +2,7 @@
 PyMango Tests for Resources
 """
 import os
+from random import randint
 
 from nose.tools import eq_, ok_, raises
 
@@ -115,6 +116,14 @@ def test_customers_get():
     customer = mango.Customers.get(customer_uid)
     ok_(customer)
     ok_(customer.get("uid"))
+
+
+def test_customers_update():
+    """Should update customer data"""
+    sample_name = "test-pymango-{0}".format(randint(1000, 999999))
+    customer_uid = mango.Customers.list()[0].get("uid")
+    ok_(mango.Customers.update(customer_uid, name=sample_name))
+    eq_(sample_name, mango.Customers.get(customer_uid).get("name"))
 
 
 @raises(mango.error.NotFound)
