@@ -7,15 +7,13 @@ This is a Python library that allows interaction with `Mango API <https://develo
 Install
 =======
 
-You can get the library from our GitHub account and copy the ``pymango`` folder into your project::
+You can get the library from ``PyPI`` using ``pip``::
+
+    $ pip install pymango
+
+If you want clone the repository, point it directly into our GitHub project::
 
     $ git clone https://github.com/Mango/mango-python.git
-
-If you want to use ``pip``, you can point it directly into the repository::
-
-    $ pip install -e git+https://github.com/Mango/mango-python.git#egg=pymango
-
-We are working out to include ``pymango`` into `PyPI <https://pypi.python.org/pypi>`_.
 
 
 Documentation
