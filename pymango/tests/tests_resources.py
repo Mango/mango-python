@@ -174,8 +174,8 @@ def test_cards_update():
 @raises(mango.error.NotFound)
 def test_cards_delete():
     """Should delete a Card"""
-    card_uid = mango.Cards.get(mango.Cards.list()[0].get("uid"))
-    ok_(mango.Cards.delete(card_uid))
+    card_uid = mango.Cards.get(mango.Cards.list()[0].get("uid")).get("uid")
+    eq_(True, mango.Cards.delete(card_uid))
     mango.Cards.get(card_uid)
 
 
