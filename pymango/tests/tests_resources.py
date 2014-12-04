@@ -35,6 +35,16 @@ def _create_token():
     return token_response.get("uid")
 
 
+def _create_ccv():
+    ccv_response = mango.client.req(
+        public_test_key,
+        "post",
+        "v1/ccvs/",
+        data={"ccv": randint(100, 999)}
+    )
+    return ccv_response.get("uid")
+
+
 #
 # Charges
 #
@@ -153,6 +163,12 @@ def test_cards_get():
     """Should get a card"""
     card = mango.Cards.get(mango.Cards.list()[0].get("uid"))
     ok_(card)
+
+
+def test_cards_update():
+    """Should update card CCV"""
+    card_uid = mango.Cards.get(mango.Cards.list()[0].get("uid")).get("uid")
+    ok_(mango.Cards.update(card_uid, ccv=_create_ccv()))
 
 
 @raises(mango.error.NotFound)
