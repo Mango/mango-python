@@ -24,7 +24,9 @@ Documentation is available at https://developers.getmango.com/en/api/?platform=p
 Usage
 =====
 
-Import the library and set your secret API key::
+Import the library and set your secret API key:
+
+.. code-block:: python
 
     >>> import pymango as mango
     >>> mango.api_key = "your Mango secret API key"
@@ -34,7 +36,9 @@ Create a charge
 ---------------
 
 In order to create a Charge, you must call the ``create()`` method with
-the required arguments (see `API documentation <https://developers.getmango.com/en/api/charges/?platform=python#arguments>`_)::
+the required arguments (see `API documentation <https://developers.getmango.com/en/api/charges/?platform=python#arguments>`_):
+
+.. code-block:: python
 
     >>> charge = mango.Charges.create(amount=2000, email="test@example.org", token="token_mwhushs06o62aruq9n3pmvu7f0ia696y")
     >>> print charge.get("uid")
@@ -46,7 +50,9 @@ the required arguments (see `API documentation <https://developers.getmango.com/
 Get single Charge
 -----------------
 
-When you have a Charge ``uid``, you can get a full detail using the ``get()`` method::
+When you have a Charge ``uid``, you can get a full detail using the ``get()`` method:
+
+.. code-block:: python
 
     >>> mango.Charges.get("charge_72t1r7vmb9pknrl4otg6xy3wrkwrrpzt")
     {

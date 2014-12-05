@@ -2,6 +2,7 @@
 PyMango Tests for Resources
 """
 import os
+from random import randint
 
 from nose.tools import eq_, ok_, raises
 
@@ -32,6 +33,16 @@ def _create_token():
         data=TEST_CARD
     )
     return token_response.get("uid")
+
+
+def _create_ccv():
+    ccv_response = mango.client.req(
+        public_test_key,
+        "post",
+        "v1/ccvs/",
+        data={"ccv": randint(100, 999)}
+    )
+    return ccv_response.get("uid")
 
 
 #
@@ -117,6 +128,14 @@ def test_customers_get():
     ok_(customer.get("uid"))
 
 
+def test_customers_update():
+    """Should update customer data"""
+    sample_name = "test-pymango-{0}".format(randint(1000, 999999))
+    customer_uid = mango.Customers.list()[0].get("uid")
+    ok_(mango.Customers.update(customer_uid, name=sample_name))
+    eq_(sample_name, mango.Customers.get(customer_uid).get("name"))
+
+
 @raises(mango.error.NotFound)
 def test_customers_delete():
     """Should delete a customer"""
@@ -146,11 +165,17 @@ def test_cards_get():
     ok_(card)
 
 
+def test_cards_update():
+    """Should update card CCV"""
+    card_uid = mango.Cards.get(mango.Cards.list()[0].get("uid")).get("uid")
+    ok_(mango.Cards.update(card_uid, ccv=_create_ccv()))
+
+
 @raises(mango.error.NotFound)
 def test_cards_delete():
     """Should delete a Card"""
-    card_uid = mango.Cards.get(mango.Cards.list()[0].get("uid"))
-    ok_(mango.Cards.delete(card_uid))
+    card_uid = mango.Cards.get(mango.Cards.list()[0].get("uid")).get("uid")
+    eq_(True, mango.Cards.delete(card_uid))
     mango.Cards.get(card_uid)
 
 
