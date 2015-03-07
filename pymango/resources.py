@@ -139,3 +139,8 @@ class Queue(GetableResource, ListableResource, ResourceDeletable, ResourceDeleta
 class Installment(ListableResource, Resource):
     """Mango Installment resource"""
     name = "installments"
+
+
+class Promotion(GetableResource, ListableResource, Resource):
+    """Mango Promotion resource"""
+    name = "promotions"
