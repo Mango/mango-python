@@ -7,7 +7,7 @@ from resources import Customer as Customers
 from resources import Card as Cards
 from resources import Queue
 from resources import Installment as Installments
+from resources import Promotion as Promotions
 
 api_key = ""
 version = 1
-

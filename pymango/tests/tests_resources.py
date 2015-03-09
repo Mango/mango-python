@@ -219,7 +219,7 @@ def test_queue_delete_all():
 #
 def test_installments_list():
     """Should return a list of queued resources"""
-    eq_(list, type(mango.Queue.list()))
+    eq_(list, type(mango.Installments.list()))
 
 
 def test_installments_list_filters():
@@ -228,3 +228,30 @@ def test_installments_list_filters():
     for installment in installments:
         eq_("visa", installment.get("cardtype"))
         eq_(5000, installment.get("amount"))
+
+
+#
+# Promotions
+#
+def test_promotions_list():
+    """Should return a list of promotion resources"""
+    eq_(list, type(mango.Promotions.list()))
+
+
+def test_promotions_list_filters():
+    """Should return a filtered list of promotions resources"""
+    promotions = mango.Promotions.list(status="active")
+    for promotion in promotions:
+        eq_("active", promotion.get("status"))
+        ok_(promotion.get("name"))
+        ok_(promotion.get("valid_to"))
+        ok_(promotion.get("valid_from"))
+
+
+def test_promotions_get_item():
+    """Should return a single promotion resource"""
+    promotion_uid = mango.Promotions.list(status="active")[0].get("uid")
+    promotion = mango.Promotions.get(promotion_uid)
+    ok_(promotion)
+    eq_(promotion_uid, promotion.get("uid"))
+    eq_("active", promotion.get("status"))
