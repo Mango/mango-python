@@ -255,3 +255,43 @@ def test_promotions_get_item():
     ok_(promotion)
     eq_(promotion_uid, promotion.get("uid"))
     eq_("active", promotion.get("status"))
+
+
+#
+# Coupons
+#
+def test_coupons_create():
+    """Should create a coupon"""
+    amount = 2000
+    type = "pagofacil"
+    first_due_date = "2018-07-17"
+    second_due_date = "2018-07-22"
+    surcharge = 1500
+    coupon = mango.Coupons.create(amount=amount, type=type, first_due_date=first_due_date, second_due_date=second_due_date, surcharge=surcharge)
+    ok_(coupon)
+    ok_(coupon.get("uid"))
+    eq_(amount, coupon.get("amount"))
+    eq_(type, coupon.get("type"))
+    eq_(first_due_date, coupon.get("first_due_date"))
+    eq_(second_due_date, coupon.get("second_due_date"))
+    eq_(surcharge, coupon.get("surcharge"))
+    eq_(False, coupon.get("paid"))
+
+
+def test_coupons_list():
+    """Should return a list of coupons"""
+    eq_(list, type(mango.Coupons.list()))
+
+
+def test_coupons_get():
+    """Should get a coupon"""
+    coupon_uid = mango.Coupons.list()[0].get("uid")
+    coupon = mango.Coupons.get(coupon_uid)
+    ok_(coupon)
+    ok_(coupon.get("uid"))
+
+
+def test_coupons_update():
+    """Should update coupon paid"""
+    coupon_uid = mango.Coupons.get(mango.Coupons.list()[0].get("uid")).get("uid")
+    ok_(mango.Coupons.update(coupon_uid, paid=True))
