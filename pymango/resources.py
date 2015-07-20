@@ -144,3 +144,8 @@ class Installment(ListableResource, Resource):
 class Promotion(GetableResource, ListableResource, Resource):
     """Mango Promotion resource"""
     name = "promotions"
+
+
+class Coupon(GetableResource, ListableResource, ResourceCreatable, ResourceUpdatable, Resource):
+    """Mango Coupon resource"""
+    name = "coupons"
