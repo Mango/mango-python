@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name="pymango",
-    version="0.1.0",
+    version="0.1.1",
     author="Mango Development Team",
     author_email="support@getmango.com",
     packages=["pymango"],
